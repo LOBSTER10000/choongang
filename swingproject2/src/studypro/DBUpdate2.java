@@ -15,10 +15,13 @@ public class DBUpdate2 {
         int seatNum;
         int stime;
         int sminute;
+        int ssecond;
         int etime;
         int eminute;
+        int esecond;
         int twoT;
         int paytime;
+        
 
         // 전화번호 세팅 메소드
         void setNum(String number) {
@@ -38,6 +41,10 @@ public class DBUpdate2 {
         void setMinute(int sminute) {
                 this.sminute = sminute;
         }
+        //입실 초 세팅 메소드
+        void setSecond(int ssecond) {
+        		this.ssecond = ssecond;
+        }
         
         //퇴실시간 세팅 메소드
         void endTime(int etime) {
@@ -48,6 +55,11 @@ public class DBUpdate2 {
                 this.eminute = eminute;
         }
         
+        //퇴실초 세팅 메소드
+        void endSecond(int esecond) {
+        	this.esecond = esecond;
+        }
+        
         //결제 2시간 세팅 메소드
         void twoTime(int twoT) {
                 this.twoT = twoT;
@@ -55,10 +67,10 @@ public class DBUpdate2 {
         
         //결제 시간 세팅 메소드
         void paytime(int paytime) {
-        	this.paytime = paytime;
+                this.paytime = paytime;
         }
 
-		// 드라이버, DB연결 메소드
+                // 드라이버, DB연결 메소드
         void DBConnect() {
                 try {
                         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -128,6 +140,20 @@ public class DBUpdate2 {
                 }
         }
         
+        // 시작 초 삽입 메소드
+        
+        void ssecondUpdate() {
+        	DBConnect();
+            try {
+                    stmt = conn.createStatement();
+                    int result = stmt
+                                    .executeUpdate("update customer2 set startsecond =" + ssecond + " where number ='" + number + "'");
+                    System.out.println(result + "건분 입력 성공");
+            } catch (SQLException e) {
+                    e.printStackTrace();
+            }
+        }
+        
         // 종료시간 삽입 메소드
         void etimeUpdate() {
                 DBConnect();
@@ -153,12 +179,21 @@ public class DBUpdate2 {
                 }
         }
         
-        // 퇴실해야하는 시간
-
-//        // 종료시간 삽입 메소드
-//        void etimeUpdate() {
-//                DBConnect();
-//        }
+        //종료초 삽입 메소드
+        
+        void esecondUpdate() {
+        	DBConnect();
+            try {
+                    stmt = conn.createStatement();
+                    int result = stmt
+                                    .executeUpdate("update customer2 set endsecond =" + esecond + " where number ='" + number + "'");
+                    System.out.println(result + "건 입력 성공");
+            } catch (SQLException e) {
+                    e.printStackTrace();
+            }
+        }
+        
+        
 
         // 선택된 좌석번호 리턴 메소드
         int SelectSeat() {
@@ -181,8 +216,10 @@ public class DBUpdate2 {
                 return 0;
         }
 
-		public void paytimeUpdate() {
-			DBConnect();
+        
+        	//결제한 시간 메소드
+                public void paytimeUpdate() {
+                        DBConnect();
             try {
                     stmt = conn.createStatement();
                     int result = stmt
@@ -191,19 +228,21 @@ public class DBUpdate2 {
             } catch (SQLException e) {
                     e.printStackTrace();
             }
-			
-		}
+                        
+                }
 
-		public void outtimeUpdate() {
-			DBConnect();
-            try {	
-	            	stmt = conn.createStatement();
-	                rs = stmt.executeQuery("SELECT starttime from customer2 where number='" + number + "'");
-	                int startTime = 0;
-	                if (rs.next()) {
-	                	startTime = rs.getInt("starttime");
-	                }
-	                
+                
+                // 시작 시간 + 결제한 시간 메소드
+                public void outtimeUpdate() {
+                        DBConnect();
+            try {        
+                            stmt = conn.createStatement();
+                        rs = stmt.executeQuery("SELECT starttime from customer2 where number='" + number + "'");
+                        int startTime = 0;
+                        if (rs.next()) {
+                                startTime = rs.getInt("starttime");
+                        }
+                        
                     stmt = conn.createStatement();
                     int result = stmt
                                     .executeUpdate("update customer2 set outtime = " + (paytime + startTime) + " where number ='" + number + "'");
@@ -211,8 +250,114 @@ public class DBUpdate2 {
             } catch (SQLException e) {
                     e.printStackTrace();
             }
-			
-		}
-		
-		 
+                        
+                }
+                
+             public String selectName() {
+            	 	DBConnect();
+            	 	try {
+						stmt = conn.createStatement();
+						rs = stmt.executeQuery("select * from customer2 name where number='" + number + "'");
+						while(rs.next()) {
+							
+							return rs.getString("name");
+//							rs.getInt("starttime");
+//							rs.getInt("startminute");
+//							rs.getInt("statsecond");
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return number;
+                    
+             }
+             
+             public int selectStarttime() {
+            	 DBConnect();
+         	 	try {
+						stmt = conn.createStatement();
+						rs = stmt.executeQuery("select starttime, startminute, startsecond from customer2 where number='" + number + "'");
+						while(rs.next()) {
+							
+							return rs.getInt("starttime");
+							
+							
+
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						
+					}
+				return sminute;
+					
+             }
+             
+             
+             public int selectStartminute() {
+            	 DBConnect();
+         	 	try {
+						stmt = conn.createStatement();
+						rs = stmt.executeQuery("select starttime, startminute, startsecond from customer2 where number='" + number + "'");
+						while(rs.next()) {
+							
+							return rs.getInt("startminute");
+							
+							
+
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						
+					}
+				return sminute;
+					
+             }
+             
+             public int selectStartsecond() {
+            	 DBConnect();
+         	 	try {
+						stmt = conn.createStatement();
+						rs = stmt.executeQuery("select starttime, startminute, startsecond from customer2 where number='" + number + "'");
+						while(rs.next()) {
+							
+							return rs.getInt("startsecond");
+							
+							
+
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						
+					}
+				return sminute;
+					
+             }
+             
+             public int selectouttime() {
+            	 DBConnect();
+         	 	try {
+						stmt = conn.createStatement();
+						rs = stmt.executeQuery("select outtime from customer2 where number='" + number + "'");
+						while(rs.next()) {
+							
+							return rs.getInt("outtime");
+							
+							
+
+						}
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						
+					}
+				return sminute;
+					
+             }
+             
+             
+                 
 }
