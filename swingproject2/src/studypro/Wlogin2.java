@@ -184,8 +184,8 @@ public class Wlogin2 extends JFrame {
 		panel_1_3.setLayout(null);
 
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(
-				"C:\\Users\\admin\\Desktop\\temporary\\choongang\\swingproject2\\src\\studypro\\중앙스터디카페2.png"));
+		lblNewLabel_1.setIcon(
+				new ImageIcon("D:\\_dev\\studypro\\src\\studypro\\\uC911\uC559\uC2A4\uD130\uB514\uCE74\uD3982.png"));
 		lblNewLabel_1.setBounds(464, 99, 350, 210);
 		panel3.add(lblNewLabel_1);
 
@@ -296,8 +296,8 @@ public class Wlogin2 extends JFrame {
 		panel1.add(btnSignUp_1);
 
 		JLabel lblNewLabel_1_2 = new JLabel("New label");
-		lblNewLabel_1_2.setIcon(new ImageIcon(
-				"C:\\Users\\admin\\Desktop\\temporary\\choongang\\swingproject2\\src\\studypro\\중앙스터디카페2.png"));
+		lblNewLabel_1_2.setIcon(
+				new ImageIcon("D:\\_dev\\studypro\\src\\studypro\\\uC911\uC559\uC2A4\uD130\uB514\uCE74\uD3982.png"));
 		lblNewLabel_1_2.setBounds(475, 130, 350, 210);
 		panel1.add(lblNewLabel_1_2);
 		// ------------------Swing끝-------------------------------------------
@@ -1091,8 +1091,10 @@ public class Wlogin2 extends JFrame {
 				LocalDateTime now = LocalDateTime.now();
 				dbUpdate2.endTime((int) now.getHour());
 				dbUpdate2.endMinute((int) now.getMinute());
+				dbUpdate2.endSecond((int) now.getSecond());
 				dbUpdate2.etimeUpdate();
 				dbUpdate2.eminuteUpdate();
+				dbUpdate2.esecondUpdate();
 				System.out.println("남은시간 = " + (dbUpdate2.etime - dbUpdate2.stime) + "시간"
 						+ (dbUpdate2.eminute - dbUpdate2.sminute) + "분");
 				System.out.println("끝" + dbUpdate2.etime + "시작" + dbUpdate2.stime);
@@ -1275,21 +1277,24 @@ public class Wlogin2 extends JFrame {
 		panel8.add(BtnOne);
 
 		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon(
-				"C:\\Users\\admin\\Desktop\\temporary\\choongang\\swingproject2\\src\\studypro\\중앙스터디카페2.png"));
+		lblNewLabel_2.setIcon(
+				new ImageIcon("D:\\_dev\\studypro\\src\\studypro\\\uC911\uC559\uC2A4\uD130\uB514\uCE74\uD3982.png"));
 		lblNewLabel_2.setBounds(396, 92, 350, 210);
 		panel8.add(lblNewLabel_2);
 
 		JLabel nameLabel = new JLabel("New label");
-		nameLabel.setBounds(169, 316, 764, 52);
+		nameLabel.setFont(new Font("HY견고딕", Font.PLAIN, 25));
+		nameLabel.setBounds(250, 316, 764, 52);
 		panel8.add(nameLabel);
 
 		JLabel starttimeLabel = new JLabel("New label");
-		starttimeLabel.setBounds(169, 412, 764, 52);
+		starttimeLabel.setFont(new Font("HY견고딕", Font.PLAIN, 25));
+		starttimeLabel.setBounds(250, 412, 764, 52);
 		panel8.add(starttimeLabel);
 
 		JLabel endtimeLabel = new JLabel("New label");
-		endtimeLabel.setBounds(169, 508, 766, 52);
+		endtimeLabel.setFont(new Font("HY견고딕", Font.PLAIN, 25));
+		endtimeLabel.setBounds(250, 508, 766, 52);
 		panel8.add(endtimeLabel);
 		BtnOne.addActionListener(new ActionListener() {
 
@@ -1465,9 +1470,15 @@ public class Wlogin2 extends JFrame {
 					LocalDateTime now = LocalDateTime.now();
 					dbUpdate2.setTime((int) now.getHour());
 					dbUpdate2.setMinute((int) now.getMinute());
+					dbUpdate2.setSecond((int) now.getSecond());
 					dbUpdate2.stimeUpdate();
 					dbUpdate2.sminuteUpdate();
-
+					dbUpdate2.ssecondUpdate();
+					nameLabel.setText("구매하신 고객님의 성함 :" + dbUpdate2.selectName() + "님");
+					starttimeLabel.setText("입실 시작 시각 : " + dbUpdate2.selectStarttime() + "시 "
+							+ dbUpdate2.selectStartminute() + "분 " + dbUpdate2.SelectSeat() + "초");
+					endtimeLabel.setText("입실 종료 시각 : " + dbUpdate2.selectouttime() + "시 "
+							+ dbUpdate2.selectStartminute() + "분 " + dbUpdate2.SelectSeat() + "초");
 					panel7.setVisible(false);
 
 					panel8.setVisible(true);
@@ -1517,9 +1528,15 @@ public class Wlogin2 extends JFrame {
 					LocalDateTime now = LocalDateTime.now();
 					dbUpdate2.setTime((int) now.getHour());
 					dbUpdate2.setMinute((int) now.getMinute());
+					dbUpdate2.setSecond((int) now.getSecond());
 					dbUpdate2.stimeUpdate();
 					dbUpdate2.sminuteUpdate();
-
+					dbUpdate2.ssecondUpdate();
+					nameLabel.setText("구매하신 고객님의 성함 :" + dbUpdate2.selectName() + "님");
+					starttimeLabel.setText("입실 시작 시각 : " + dbUpdate2.selectStarttime() + "시 "
+							+ dbUpdate2.selectStartminute() + "분 " + dbUpdate2.SelectSeat() + "초");
+					endtimeLabel.setText("입실 종료 시각 : " + dbUpdate2.selectouttime() + "시 "
+							+ dbUpdate2.selectStartminute() + "분 " + dbUpdate2.SelectSeat() + "초");
 					panel7.setVisible(false);
 
 					panel8.setVisible(true);
@@ -1569,8 +1586,15 @@ public class Wlogin2 extends JFrame {
 					LocalDateTime now = LocalDateTime.now();
 					dbUpdate2.setTime((int) now.getHour());
 					dbUpdate2.setMinute((int) now.getMinute());
+					dbUpdate2.setSecond((int) now.getSecond());
 					dbUpdate2.stimeUpdate();
 					dbUpdate2.sminuteUpdate();
+					dbUpdate2.ssecondUpdate();
+					nameLabel.setText("구매하신 고객님의 성함 :" + dbUpdate2.selectName() + "님");
+					starttimeLabel.setText("입실 시작 시각 : " + dbUpdate2.selectStarttime() + "시 "
+							+ dbUpdate2.selectStartminute() + "분 " + dbUpdate2.SelectSeat() + "초");
+					endtimeLabel.setText("입실 종료 시각 : " + dbUpdate2.selectouttime() + "시 "
+							+ dbUpdate2.selectStartminute() + "분 " + dbUpdate2.SelectSeat() + "초");
 					panel7.setVisible(false);
 
 					panel8.setVisible(true);
