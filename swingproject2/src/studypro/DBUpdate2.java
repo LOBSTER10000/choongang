@@ -18,6 +18,7 @@ public class DBUpdate2 {
         int etime;
         int eminute;
         int twoT;
+        int paytime;
 
         // 전화번호 세팅 메소드
         void setNum(String number) {
@@ -51,8 +52,13 @@ public class DBUpdate2 {
         void twoTime(int twoT) {
                 this.twoT = twoT;
         }
+        
+        //결제 시간 세팅 메소드
+        void paytime(int paytime) {
+        	this.paytime = paytime;
+        }
 
-        // 드라이버, DB연결 메소드
+		// 드라이버, DB연결 메소드
         void DBConnect() {
                 try {
                         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -174,4 +180,39 @@ public class DBUpdate2 {
                 }
                 return 0;
         }
+
+		public void paytimeUpdate() {
+			DBConnect();
+            try {
+                    stmt = conn.createStatement();
+                    int result = stmt
+                                    .executeUpdate("update customer2 set paytime =" + paytime + " where number ='" + number + "'");
+                    System.out.println(result + "건 입력 성공");
+            } catch (SQLException e) {
+                    e.printStackTrace();
+            }
+			
+		}
+
+		public void outtimeUpdate() {
+			DBConnect();
+            try {	
+	            	stmt = conn.createStatement();
+	                rs = stmt.executeQuery("SELECT starttime from customer2 where number='" + number + "'");
+	                int startTime = 0;
+	                if (rs.next()) {
+	                	startTime = rs.getInt("starttime");
+	                }
+	                
+                    stmt = conn.createStatement();
+                    int result = stmt
+                                    .executeUpdate("update customer2 set outtime = " + (paytime + startTime) + " where number ='" + number + "'");
+                    System.out.println(result + "건 입력 성공");
+            } catch (SQLException e) {
+                    e.printStackTrace();
+            }
+			
+		}
+		
+		 
 }

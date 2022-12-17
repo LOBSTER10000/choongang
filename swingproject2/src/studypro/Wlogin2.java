@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class Wlogin2 extends JFrame {
 
@@ -59,6 +60,8 @@ public class Wlogin2 extends JFrame {
 	private JTextField textField_5;
 
 	private Thread t1;
+
+	protected String uid1 = "";
 
 	public static void main(String[] args) {
 
@@ -180,10 +183,10 @@ public class Wlogin2 extends JFrame {
 		panel3.add(panel_1_3);
 		panel_1_3.setLayout(null);
 
-		JLabel lblNewLabel_1 = new JLabel("\uC911\uC559 \uC2A4\uD130\uB514\uCE74\uD398");
-		lblNewLabel_1.setForeground(new Color(0, 128, 255));
-		lblNewLabel_1.setFont(new Font("HY견고딕", Font.PLAIN, 40));
-		lblNewLabel_1.setBounds(483, 113, 311, 148);
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon(
+				"C:\\Users\\admin\\Desktop\\temporary\\choongang\\swingproject2\\src\\studypro\\중앙스터디카페2.png"));
+		lblNewLabel_1.setBounds(464, 99, 350, 210);
 		panel3.add(lblNewLabel_1);
 
 		// panel1 로그인화면
@@ -202,15 +205,6 @@ public class Wlogin2 extends JFrame {
 		lbTime.setFont(new Font("HY견고딕", Font.PLAIN, 30));
 
 		panel1.add(lbTime);
-
-		JLabel lbStudyCafe = new JLabel("스터디 카페 키오스크");
-		lbStudyCafe.setBounds(481, 248, 265, 68);
-
-		lbStudyCafe.setForeground(new Color(0, 128, 255));
-
-		lbStudyCafe.setFont(new Font("HY견고딕", Font.PLAIN, 24));
-
-		panel1.add(lbStudyCafe);
 
 		JLabel lbNumber = new JLabel("전화번호 :");
 		lbNumber.setBounds(487, 382, 117, 39);
@@ -300,6 +294,12 @@ public class Wlogin2 extends JFrame {
 		btnSignUp_1.setBackground(new Color(0, 128, 255));
 		btnSignUp_1.setBounds(910, 125, 176, 52);
 		panel1.add(btnSignUp_1);
+
+		JLabel lblNewLabel_1_2 = new JLabel("New label");
+		lblNewLabel_1_2.setIcon(new ImageIcon(
+				"C:\\Users\\admin\\Desktop\\temporary\\choongang\\swingproject2\\src\\studypro\\중앙스터디카페2.png"));
+		lblNewLabel_1_2.setBounds(475, 130, 350, 210);
+		panel1.add(lblNewLabel_1_2);
 		// ------------------Swing끝-------------------------------------------
 
 //panel2 회원가입화면
@@ -944,6 +944,7 @@ public class Wlogin2 extends JFrame {
 				panel5.setVisible(false);
 				panel4.setVisible(true);
 				dbUpdate2.dUpdate();
+
 				JButton[] seatBtn = { seatBtn1, seatBtn2, seatBtn3, seatBtn4, seatBtn5, seatBtn6, seatBtn7, seatBtn8,
 						seatBtn9,
 
@@ -1096,7 +1097,8 @@ public class Wlogin2 extends JFrame {
 						+ (dbUpdate2.eminute - dbUpdate2.sminute) + "분");
 				System.out.println("끝" + dbUpdate2.etime + "시작" + dbUpdate2.stime);
 //                                System.out.println(dbUpdate2.);
-				String uid1 = idField6.getText();
+//				String uid1 = idField6.getText();
+				uid1 = idField6.getText();
 
 				String upass2 = "";
 
@@ -1138,8 +1140,6 @@ public class Wlogin2 extends JFrame {
 
 							PasswordField6.setText("");
 
-							System.out.println();
-
 							JButton[] seatBtn = { seatBtn1, seatBtn2, seatBtn3, seatBtn4, seatBtn5, seatBtn6, seatBtn7,
 									seatBtn8, seatBtn9,
 
@@ -1150,15 +1150,12 @@ public class Wlogin2 extends JFrame {
 									seatBtn26, seatBtn27,
 
 									seatBtn28, seatBtn29, seatBtn30, seatBtn31, seatBtn32, seatBtn33, seatBtn34 };
+
 							System.out.println(seatBtn[index].getText());
-
-							for (JButton seatBtnn : seatBtn) {
-								seatBtnn.setBackground(new Color(0, 128, 255));
-								seatBtnn.setForeground(new Color(255, 255, 255));
-								seatBtnn.setEnabled(true);
-								lbWelcome.setText("로그인 부탁드립니다!");
-
-							}
+							seatBtn[index].setBackground(new Color(0, 128, 255));
+							seatBtn[index].setForeground(new Color(255, 255, 255));
+							seatBtn[index].setEnabled(true);
+							lbWelcome.setText("로그인 부탁드립니다!");
 
 						} else {
 
@@ -1271,8 +1268,29 @@ public class Wlogin2 extends JFrame {
 		panel8.add(lbTime1_6);
 
 		JButton BtnOne = new JButton("처음으로");
-		BtnOne.setBounds(510, 540, 230, 120);
+		BtnOne.setFont(new Font("HY견고딕", Font.PLAIN, 30));
+		BtnOne.setBackground(new Color(0, 128, 255));
+		BtnOne.setForeground(new Color(255, 255, 255));
+		BtnOne.setBounds(470, 624, 230, 120);
 		panel8.add(BtnOne);
+
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2.setIcon(new ImageIcon(
+				"C:\\Users\\admin\\Desktop\\temporary\\choongang\\swingproject2\\src\\studypro\\중앙스터디카페2.png"));
+		lblNewLabel_2.setBounds(396, 92, 350, 210);
+		panel8.add(lblNewLabel_2);
+
+		JLabel nameLabel = new JLabel("New label");
+		nameLabel.setBounds(169, 316, 764, 52);
+		panel8.add(nameLabel);
+
+		JLabel starttimeLabel = new JLabel("New label");
+		starttimeLabel.setBounds(169, 412, 764, 52);
+		panel8.add(starttimeLabel);
+
+		JLabel endtimeLabel = new JLabel("New label");
+		endtimeLabel.setBounds(169, 508, 766, 52);
+		panel8.add(endtimeLabel);
 		BtnOne.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -1362,9 +1380,9 @@ public class Wlogin2 extends JFrame {
 
 						panel5.setVisible(true);
 
-						seatBtnn.setBackground(Color.red);
-
-						seatBtnn.setEnabled(false); // 버튼 비활성화
+//						seatBtnn.setBackground(Color.red);
+//
+//						seatBtnn.setEnabled(false); // 버튼 비활성화
 
 						dbUpdate2.setSeatNum(Integer.parseInt(seatBtnn.getText()));
 						dbUpdate2.sUpdate();
@@ -1383,44 +1401,6 @@ public class Wlogin2 extends JFrame {
 
 		}
 
-		// 금액선택 이벤트
-		int[] pricenum = {1,2,4,6,8,10};
-		JButton[] priceBtn = { priceBtn1, priceBtn2, priceBtn3, priceBtn4, priceBtn5, priceBtn6 };
-
-		for (JButton priceBtnn : priceBtn) {
-
-			priceBtnn.addActionListener(new ActionListener() {
-
-				public void actionPerformed(ActionEvent e) {
-
-					int answer = JOptionPane.showConfirmDialog(null, "결제하시겠습니까?", "확인창", YES_NO_OPTION);
-
-					if (answer == JOptionPane.YES_OPTION) {
-
-						System.out.println("-----------");
-
-						System.out.println("-----------");
-
-						panel5.setVisible(false);
-
-						panel7.setVisible(true);
-						
-						
-						int index = Arrays.asList(priceBtn).indexOf(priceBtnn);
-						System.out.println(pricenum[index]); 
-					} else if (answer == JOptionPane.NO_OPTION) {
-
-						panel5.setVisible(true);
-
-						panel7.setVisible(false);
-
-					}
-
-				}
-
-			});
-
-		}
 //                priceBtn2.addActionListener(new ActionListener() {
 //
 //                        @Override
@@ -1463,13 +1443,33 @@ public class Wlogin2 extends JFrame {
 
 					System.out.println("-----------");
 
+					dbUpdate2.setNum(uid1);
+					int index = dbUpdate2.SelectSeat() - 1;
+					System.out.println(uid1);
+					System.out.println(index);
+					JButton[] seatBtn = { seatBtn1, seatBtn2, seatBtn3, seatBtn4, seatBtn5, seatBtn6, seatBtn7,
+							seatBtn8, seatBtn9,
+
+							seatBtn10, seatBtn11, seatBtn12, seatBtn13, seatBtn14, seatBtn15, seatBtn16, seatBtn17,
+							seatBtn18,
+
+							seatBtn19, seatBtn20, seatBtn21, seatBtn22, seatBtn23, seatBtn24, seatBtn25, seatBtn26,
+							seatBtn27,
+
+							seatBtn28, seatBtn29, seatBtn30, seatBtn31, seatBtn32, seatBtn33, seatBtn34 };
+
+					seatBtn[index].setBackground(Color.red);
+
+					seatBtn[index].setEnabled(false); //
+
 					LocalDateTime now = LocalDateTime.now();
 					dbUpdate2.setTime((int) now.getHour());
 					dbUpdate2.setMinute((int) now.getMinute());
 					dbUpdate2.stimeUpdate();
 					dbUpdate2.sminuteUpdate();
+
 					panel7.setVisible(false);
-					
+
 					panel8.setVisible(true);
 
 				} else if (answer == JOptionPane.NO_OPTION) {
@@ -1494,6 +1494,25 @@ public class Wlogin2 extends JFrame {
 					System.out.println("-----------");
 
 					System.out.println("-----------");
+
+					dbUpdate2.setNum(uid1);
+					int index = dbUpdate2.SelectSeat() - 1;
+					System.out.println(uid1);
+					System.out.println(index);
+					JButton[] seatBtn = { seatBtn1, seatBtn2, seatBtn3, seatBtn4, seatBtn5, seatBtn6, seatBtn7,
+							seatBtn8, seatBtn9,
+
+							seatBtn10, seatBtn11, seatBtn12, seatBtn13, seatBtn14, seatBtn15, seatBtn16, seatBtn17,
+							seatBtn18,
+
+							seatBtn19, seatBtn20, seatBtn21, seatBtn22, seatBtn23, seatBtn24, seatBtn25, seatBtn26,
+							seatBtn27,
+
+							seatBtn28, seatBtn29, seatBtn30, seatBtn31, seatBtn32, seatBtn33, seatBtn34 };
+
+					seatBtn[index].setBackground(Color.red);
+
+					seatBtn[index].setEnabled(false); //
 
 					LocalDateTime now = LocalDateTime.now();
 					dbUpdate2.setTime((int) now.getHour());
@@ -1527,6 +1546,25 @@ public class Wlogin2 extends JFrame {
 					System.out.println("-----------");
 
 					System.out.println("-----------");
+
+					dbUpdate2.setNum(uid1);
+					int index = dbUpdate2.SelectSeat() - 1;
+					System.out.println(uid1);
+					System.out.println(index);
+					JButton[] seatBtn = { seatBtn1, seatBtn2, seatBtn3, seatBtn4, seatBtn5, seatBtn6, seatBtn7,
+							seatBtn8, seatBtn9,
+
+							seatBtn10, seatBtn11, seatBtn12, seatBtn13, seatBtn14, seatBtn15, seatBtn16, seatBtn17,
+							seatBtn18,
+
+							seatBtn19, seatBtn20, seatBtn21, seatBtn22, seatBtn23, seatBtn24, seatBtn25, seatBtn26,
+							seatBtn27,
+
+							seatBtn28, seatBtn29, seatBtn30, seatBtn31, seatBtn32, seatBtn33, seatBtn34 };
+
+					seatBtn[index].setBackground(Color.red);
+
+					seatBtn[index].setEnabled(false); //
 
 					LocalDateTime now = LocalDateTime.now();
 					dbUpdate2.setTime((int) now.getHour());
@@ -1701,6 +1739,7 @@ public class Wlogin2 extends JFrame {
 					try {
 
 						if (customer2.logincheck(uid, upass) != null) {
+							uid1 = uid;
 
 							System.out.println("로그인 성공");
 
@@ -1739,6 +1778,47 @@ public class Wlogin2 extends JFrame {
 			}
 
 		});
+
+		// 금액선택 이벤트
+		int[] pricenum = { 1, 2, 4, 6, 8, 10 };
+		JButton[] priceBtn = { priceBtn1, priceBtn2, priceBtn3, priceBtn4, priceBtn5, priceBtn6 };
+
+		for (JButton priceBtnn : priceBtn) {
+
+			priceBtnn.addActionListener(new ActionListener() {
+
+				public void actionPerformed(ActionEvent e) {
+
+					int answer = JOptionPane.showConfirmDialog(null, "결제하시겠습니까?", "확인창", YES_NO_OPTION);
+
+					if (answer == JOptionPane.YES_OPTION) {
+
+						System.out.println("-----------");
+
+						System.out.println("-----------");
+
+						panel5.setVisible(false);
+
+						panel7.setVisible(true);
+
+						int index2 = Arrays.asList(priceBtn).indexOf(priceBtnn);
+						System.out.println(pricenum[index2]);
+						dbUpdate2.paytime(pricenum[index2]);
+						dbUpdate2.paytimeUpdate();
+						dbUpdate2.outtimeUpdate();
+					} else if (answer == JOptionPane.NO_OPTION) {
+
+						panel5.setVisible(true);
+
+						panel7.setVisible(false);
+
+					}
+
+				}
+
+			});
+
+		}
 
 		btnSignUp_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

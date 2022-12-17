@@ -38,7 +38,7 @@ public class Customer2 {
 //		String password = _p;
 		
 		try {
-			String checkingStr = "select name, password from customer where number='" + number + "'";
+			String checkingStr = "select name, password from customer2 where number='" + number + "'";
 			ResultSet result = stmt.executeQuery(checkingStr);
 			
 			while(result.next()) {
