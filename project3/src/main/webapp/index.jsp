@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>302 중앙브리타임</title>
 </head>
 <body>
 <script>

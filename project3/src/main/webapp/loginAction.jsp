@@ -12,7 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width", initail-scale="1"> 
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>JSP  게시판 웹 사이트</title>
+<title>302 중앙브리타임</title>
 </head>
 <body>
 	<%

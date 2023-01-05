@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="user.UserDAO" %>
 <%@ page import="java.io.PrintWriter" %> 
-<% request.setCharacterEncoding("UTF-8"); %>
+<% request.setCharacterEncoding(
+		"UTF-8"); %>
 <jsp:useBean id="user" class="user.User" scope="page" />
 <jsp:setProperty name="user" property="userID" />
 <jsp:setProperty name="user" property="userPassword" />
@@ -15,7 +16,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width", initail-scale="1"> 
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>JSP  게시판 웹 사이트</title>
+<title>302 중앙브리타임</title>
 </head>
 <body>
 	<%	
