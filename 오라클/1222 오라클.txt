@@ -1,0 +1,57 @@
+함수
+
+upper(ename) upper('smith')
+-> 대문자로 나타내라
+lower(ename)
+-> 소문자로 나타내라
+inticap(ename)
+-> 첫 글자는 대문자로 나머지는 소문자로 나타내라
+
+length(ename)
+-> ename의 문자열 길이를 나타내라
+
+select sysdate
+    from dual
+-> dual은 더미 테이블이라는 의미다
+
+substr 
+select job, substr(job, 1, 2)
+ from emp 
+-> job이라는 열의 정보들을 2글자의 약자로만 나타내라
+(1부터 2까지)
+
+instr 
+select instr('hello, oracle', 'l')
+ from dual
+-> 문자열 안에 특정데이터인 'l'의 
+문자열의 위치를 찾아주는 역할을 한다
+
+replace
+select replace('010-2114-1128', '-', '*')
+from dual
+-> 문자열의 특정 데이터를 변환해준다
+
+lpad, rpad
+
+concat 
+
+-> 두 문자열의 데이터를 합친다
+
+trim
+select ename
+  from emp
+where ename = trim(' SMITH')
+-> 공백을 지우는 역할을 한다
+
+
+
+숫자데이터로 만드는 숫자함수
+round : 반올림
+ceil : 지정된 숫자와 가장 가까운 큰 정수
+floor : 지정된 숫자와 가장 가까운 작은 정수
+mod : 숫자를 나눈 나머지
+trunc : 버림
+mod : 나머지
+
+날짜데이터를 다루는 날짜함수
+몇개월 이후 날짜를 더하는 add_months()함수

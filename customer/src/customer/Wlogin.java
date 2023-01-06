@@ -1493,7 +1493,7 @@ public class Wlogin extends JFrame {
 
 					LocalDateTime now = LocalDateTime.now();
 
-					lbTime.setText(now.getHour() + " 시 " + now.getMinute() + " 분 " + now.getSecond() + " 초 ");
+					lbTime.setText(now());
 					lbTime1.setText(now.getHour() + " 시 " + now.getMinute() + " 분 " + now.getSecond() + " 초 ");
 					lbTime1_1.setText(now.getHour() + " 시 " + now.getMinute() + " 분 " + now.getSecond() + " 초 ");
 					lbTime1_2.setText(now.getHour() + " 시 " + now.getMinute() + " 분 " + now.getSecond() + " 초 ");

@@ -1,0 +1,78 @@
+제약 조건
+테이블 열에 저장될 데이터의 특성, 조건을 지정
+
+not null
+unique
+primary key
+foreign key
+check
+
+영역 무결성
+개체 무결성
+참조 무결성
+
+* desc 테이블명 -> 테이블의 정보가 나온다
+
+(1) not null
+
+create table table_notnull(
+    login_id varchar2(20) not null,
+    login_pwd varchar2(20) not null,
+    tel varchar2(20)
+    );
+
+-> 
+
+insert into table_notnull (login_id, login_pwd)
+values ('test_id_01', '1234');
+
+/ or 
+
+update table_notnull
+  set  login_pwd = null
+  where login_id = 'test_id_01'; (업데이트 불가) -> 제약조건에 해당됨
+
+//
+select owner, constraint_name, constraint_type, table_name
+ from user_constraints -> 제약조건을 확인
+
+create table table_notnull2 (
+    login_id varchar2(20) constraint tblnn2_lgnid_nn not null,
+    login_pwd varchar2(20) constraint tblnn2_lgnpw_nn not null,
+    tel varchar2(20)
+    );
+
+tblnn2_lgnid_nn
+테이블명 -> 열의 이름 -> not null이라는 의미
+
+alter table table_notnull2
+modify(tel constraint tblnn_tel_nn not null);
+-> 제약조건 변경
+
+alter table table_notnull2
+rename constraint tblnn_tel_nn to tblnn2_tel_nn; 
+-> 제약조건명 변경
+
+alter table table_notnull2
+drop constraint tblnn2_tel_nn;
+-> 제약조건명 삭제
+
+
+-------------------------------------------------
+
+
+unique
+create table table_unique2(
+    login_id varchar2(20) unique,
+    login_pwd varchar2(20) not null,
+    tel varchar2(20)
+    );
+-> 
+
+insert into table_unique2 (login_id, login_pwd, tel)
+values (null, 'pwd01', '010-1234-5678');
+-> 적용 (unique에는 null값이 적용 가능하다)
+
+update table_unique2
+  set login_id = 'test_id_03'
+where rowid = 'AAATFwAAHAAAAIXAAC'

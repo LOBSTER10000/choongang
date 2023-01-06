@@ -1,0 +1,46 @@
+데이터 정의어
+
+데이터 정의어를 사용하면 효과가 발생
+auto commit -> 사용과 동시에 커밋효과
+(rollback 불가)
+
+create table scott.emp -> 스콧 아이디에 있는 emp 테이블을 가져오라
+* 데이터 열 이름에는 sql 키워드를 열이름으로 사용하지 마라
+create table 소유계정.테이블이름 
+
+create table dept_ddl
+as select * from dept =>
+ dept_ddl의 테이블을 dept 테이블을 참조해서 만들어라
+
+create table empdept_ddl
+  as select e.empno, e.ename, e.job, e.mgr, e.hiredate,
+            e.sal, e.comm, d.deptno, d.dname, d.loc
+            from emp e, dept d
+            where 1 <> 1; 
+1<>1 의 의미 false로 빈 테이블 값만 가져와라
+
+
+테이블을 변경하는 alter 명령어
+
+alter table emp_alter 
+    add hp varchar2(20); 
+-> hp라는 컬럼을 새롭게 추가하라 (add)
+
+alter table emp_alter
+ rename column hp to tel;
+-> hp라는 컬럼을 tel이라는 컬럼으로 변경하라(rename column ... to)
+
+alter table emp_alter
+ modify tel varchar2(11);
+-> tel이라는 컬럼을 varchar2(11)글자로 데이터 길이를 변경하라
+
+alter table emp_alter
+ drop column tel;
+-> tel이라는 컬럼을 삭제하라
+
+rename emp_alter to emp_rename
+-> 테이블 명을 변경하라 (rename ... to)
+truncate table emp_rename;
+-> 테이블의 모든 데이터를 삭제하라(rollback 불가)
+drop table emp_rename;
+-> 테이블을 삭제하라

@@ -1,0 +1,89 @@
+select 12 + '34'
+    from dual
+
+select empno, empno + '23'
+    from emp
+	자동 형변환
+
+to_char -> 숫자 또는 날짜 데이터를 문자데이터로
+to_number -> 문자 데이터를 숫자데이터로
+to_date -> 문자 데이터를 날짜데이터로
+
+(1) select to_char(sysdate, 'yyyy')
+    from dual
+    
+-> sysdate를 yyyy연도로 나타내라(문자데이터로)
+
+ex) select to_char(sysdate, 'yyyy:MONTH:DD:HH:mi:ss')
+    from dual
+
+* to_char에 숫자를 쓰는 경우
+select to_char(sal, '$999,999') from emp    
+-> 앞에 달러 표시를 붙임(999,999의 포맷을 맞춤)
+
+(2) to_number 
+-> 자동으로 문자열을 숫자데이터로 형변환하여 계산을 해줌
+select to_number('1,300', '999,999') 
+- to_number('1,500', '999,999') from dual;
+
+(3) to_date
+-> 문자 데이터를 날짜 데이터로 변환하기
+
+select to_date('2018-07-24', 'yyyy-mm-dd') from dual
+
+select to_char(to_date('51/12/10', 'rr/mm/dd'), 'yyyy/mm/dd') from dual
+ -> rr은 1900년대로 변환해줌
+
+(4) null 함수
+select empno, ename, comm,
+    NVl2(comm, '0', 'X'),
+    NVL2(comm, SAL*12+comm, SAL*12) as ANNSAL
+    from emp;
+-> sal*12+comm null일 경우 / sal* 12 null이 아닐경우 나타내라
+
+(5) decode함수
+select decode(job, 'MANAGER', 'o', 'x')
+from emp
+-> job열의 정보가 매니저인 경우에는 o 아닐경우 x로 표시
+
+
+(6) 케이스문 이용 (연봉 상승)
+select empno, ename, job, sal,
+    case job
+        when 'MANAGER' then sal*1.1
+        when 'SALESMAN' then sal*1.05
+        when 'ANALYST' then sal
+        else sal*1.03
+    end as upsal
+    from emp
+-> 직업이 매니저일때 연봉 1.1배 상승 ...
+
+
+
+1번 답
+select empno, concat(rpad(empno, 2), '**'), ename, concat(rpad(ename, 1), '***')
+from emp 
+where length(ename)>=5 and length(ename)<6
+
+
+2번 답
+select empno, ename, sal, trunc(sal/21.5, 2) as DAY_PAY, round(sal/21.5/8, 1) as TIME_PAY
+from emp
+
+다중행 함수(집계형 함수)
+select sum(sal)
+    from emp
+
+select count(*), sum(sal), avg(sal), 
+max(sal), min(sal)
+from emp
+
+
+select deptno, sum(sal)
+    from emp
+    group by deptno 
+-> 부서별 임금 합계 
+group by 그룹끼리 묶는다.
+
+* over는 집계가 누적됨(누계를 구하는데 많이 사용)
+

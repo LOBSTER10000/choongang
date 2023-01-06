@@ -1,0 +1,43 @@
+* sysdate -> 오늘자기준의 날짜값
+  to_date('23-01-02', 'YYYY-MM-DD') -> 날짜값 지정
+
+ddl(data definition language) 오브젝트를 만드는데 사용
+
+create table dept_temp
+as select * from dept;
+-> 테이블 생성
+create table emp_temp
+as select * from emp where 1 <> 1
+-> where 문으로 조건값을 줘서(false) 
+데이터 값은 없게 생성함
+
+drop table dept_temp
+-> 테이블 삭제
+
+insert into dept_temp (deptno, dname, loc) <- 컬럼명
+values (50, 'DATABASE', 'SEOUL') <- 실제 정보
+-> 테이블 정보 내용 추가
+(명시적으로라도 컬럼명을 써주는것이 좋다)
+그리고 null 데이터는 안써주는게 오히려 좋다.
+
+* insert문의 서브쿼리 사용시 유의점
+ . values를 사용하지 않는다.
+ . 데이터가 추가되는 테이블 열의 개수와 서브쿼리 열의 개수가 일치 + 자료형 일치
+
+
+commit, rollback
+-> 커밋은 새로 저장한 값들을 업데이트
+    롤백은 새로 저장한 값들을 이전값으로 되돌리기
+
+update dept_temp
+    set loc = 'Seoul'
+    where dname = '인사4'
+-> 기존에 저장되어있는 데이터를 변경할때 사용
+(update ---- set --- where)
+
+update dept_temp
+    set (dname, loc) = (select dname, loc from dept where deptno = 40)
+    where deptno = 40
+-> 서브쿼리 사용
+dname, loc를 dept테이블에 있는 deptno 40번의 정보의
+dname, loc로 변경하라

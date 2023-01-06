@@ -1,0 +1,49 @@
+조인 -> 두 개 이상의 테이블을 연결하여 하나의 테이블
+처럼 출력할 때 사용하는 방식을 의미한다.
+
+
+select * from emp, dept
+    where emp, deptno = dept.deptno
+    order by empno;
+
+조인:가로 연결
+ -> 집합 연산자 : 세로 연결
+
+from 절에 여러 테이블 지정
+
+등가 조인 -> 두 개의 테이블 중 같은 데이터를 지닌 
+열을 기준으로 묶어버리는 조인을 의미한다.
+select e.ename, e.sal, d.deptno, d.dname, d.loc 
+      from emp e , dept d
+     where e.deptno = d.deptno
+
+ -> e와 d라는 조건을 사용해준 후 서로 맞는 컬럼에 
+   앞에 사용하여 사용하는 것이 가능하다.
+e.deptno테이블의 정보와 d.deptno 정보가 같다면 나머지를 나타내라
+
+select * from emp e, salgrade s
+where e.sal between s.losal and s.hisal
+  order by ename
+
+-> e.sal의 영역이 s.losal과 s.hisal의 사이에 있을 때 
+select를 나타내라.
+
+
+select e1.empno, e1.ename, e1.mgr, e2.empno, e2.ename 
+from emp e1, emp e2
+where e1.mgr = e2.empno(+) 
+(+) -> 아우터 조인 (e1.mgr과 e2.empno에 
+해당하지 않는 e2.empno값도 추가하라)
+
+------------------------
+
+select ename, deptno, dname from 
+emp natural join dept
+-> natural join은 emp와 dept의 같은 열을 지닌 테이블 값을
+기준으로 묶어버린다.
+select ename, deptno, dname 
+from emp join dept using(deptno)
+-> 이하 동의
+select e.ename, e.deptno, d.dname 
+from emp e join dept d on(e.deptno = d.deptno)
+-> 이하 동의

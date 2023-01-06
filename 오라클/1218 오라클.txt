@@ -1,0 +1,39 @@
+request.getParameter("id");
+-> 폼태그의 값을 불러올 수 있는 요소
+
+
+(1)<%! %>
+변수 및 멤버 메소드를 선언할 때 사용
+(2)<% %>
+-> 자바 코드를 적을 수 있는 영역
+(3)<%= %>
+-> 표현식은 자바의 변수를 화면에 출력하기 위해 
+사용되는 영역
+169406484
+
+1. select * from  emp where 
+ename like upper('%s')
+
+2. select empno, ename,job, sal, deptno 
+from  emp where deptno = 30
+
+3 . select empno, ename,job, sal, deptno from  
+emp where deptno between 20 and 30
+intersect
+select empno, ename,job, sal, 
+deptno from  emp where sal > 2000
+
+4. select * from emp where sal < 2000
+or sal > 3000
+
+5.select ename, empno, sal , deptno 
+from emp 
+where sal not between 1000 and 2000
+    and ename like '%E%'
+    and deptno = 30
+
+
+6.select * from emp where job in ('MANAGER', 'CLERK') 
+and ename not like '_L%'
+and comm is null
+and mgr is not null

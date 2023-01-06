@@ -1,0 +1,68 @@
+
+객체종류
+1. 데이터 사전
+2. 인덱스
+3. 뷰
+4. 시퀀스
+5. 동의어
+
+user_xxx -> 현재 데이터베이스에 접속한 사용자가 소유한 객체 정보
+all_ xxx -> 사용가능한 모든 객체 정보 (현재 접속한 사용자와 다른 사용자 포함) 
+dba_xxx -> 데이터베이스 관리를 위한 정보(system,sys사용자만 열람 가능)
+V$_xxx -> 데이터베이스 성능 관련 정보
+
+
+2. 인덱스
+-> 책이나 특정단어나 내용을 빠르게 찾기 위해서 사용
+
+3. 뷰
+-> 가상테이블(하나 이상의 테이블을 조회하는 select문을 저장한 객체)
+
+select * from 
+(select empno, ename, job, deptno 
+from emp where deptno = 20); -> 서브쿼리 이용방법 (가짜테이블)
+
+select * from vw_emp20 -> 뷰 이용 방법
+
+create view vw_emp20
+  as (select empno, ename, job, deptno from emp where deptno = 20); 
+(create..... as)
+뷰 생성 방법
+
+drop view vw_emp20
+뷰 삭제 방법
+
+*뷰도 데이터 조작어로 데이터 내용을 변경,삭제가 가능하다 (insert가 된 내용은 처음에 만들때 선택한 원 테이블에 저장됨) 
+ * 다만 예외적으로 조인으로 뷰가 묶인 경우에는 수정이 불가하다.
+
+* rownum -> 오라클에만 존재하는 키워드 (번호를 매겨주는 기능)
+select rownum, e.*
+ from (select * from emp order by sal) e -> 
+행의 번호도 표시해야할때가 있음 
+
+
+
+4. 시퀀스
+-> 
+
+
+create sequence seq_dept_seq
+increment by 10
+start with 10
+maxvalue 90
+minvalue 0
+nocycle 
+cache 2;
+
+-> insert into dept_seq (deptno, dname, loc)
+values (seq_dept_seq.nextval, 'DB', 'SEOUL');
+
+-> select seq_dept_seq3.nextval
+-> select seq_dept_seq3.currval
+
+
+5. 동의어
+
+-> 테이블, 뷰, 시퀀스 등 객체이름 대신 사용할 수 있는 다른 이름을 부여하는 객체.
+create synonym e
+   for emp;

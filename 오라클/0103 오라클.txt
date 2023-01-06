@@ -1,0 +1,18 @@
+트랜잭션
+-> 더 이상 분할 할 수 없는 최소 수행 단위
+
+트랜잭션은 하나의 트랜잭션에 묶여있는 두 가지
+이상의 명령어가 모두 정상적으로 수행 완료 된 개념
+혹은 모든 명령어가 취소가 된 상태 두가지만 존재
+
+
+
+ex)
+insert into dept_tcl values(50, 'database', 'seoul');
+update dept_tcl set loc = 'busan' where deptno = 40;
+delete from dept_tcl where dname = 'RESEARCH';
+select * from dept_tcl;
+이런 식으로 여러개의 명령어를 한번에 작동하는게
+하나의 트랜잭션이다.
+되돌릴때 rollback; 영구 적용할때 commit;
+

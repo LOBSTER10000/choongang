@@ -1,0 +1,34 @@
+select count(*) from emp
+-> count(*) emp의 숫자
+
+select *from emp where deptno = 10
+10번 부서 컬럼에 있는 사람들의 정보를 불러옴
+
+select ename, sal from emp where deptno =10
+10번부서 컬럼에 있는 사람들의 정보 중
+이름, 연봉 값을 불러옴
+
+select * from dept, emp 
+
+두 가지의 테이블을 합쳐서 보여줌 (join)
+그러나 이렇게 매칭을 하면 모든 컬럼을 하나씩 합쳐서 
+12 * 4 = 48줄로 나오는 문제가 생김
+order by -> sort 
+불러온 순서를 알파벳,숫자순으로 정렬하라
+select * from emp order by sal desc;
+-> desc는 내림차순으로 불러오라(기본은 오름차순)
+select * from emp order by deptno, sal desc;
+-> deptno는 오름차순 sal은 내림차순으로 
+
+해결 방법->> 
+select * from dept, emp where emp.deptno = dept.deptno
+양 테이블의 deptno컬럼을 같은 조건으로 합쳐라.
+
+select distinct deptno from emp
+-> emp테이블의 deptno 컬럼을 중복없이 가져와라
+
+select sal*12 as(연봉) from emp 
+-> sal*12의 컬럼을 연봉이라는 별칭으로 지어서 나타내라
+
+select sal * 12+ nvl(comm, 0) 연봉 from emp
+ -> nvl(comm, 0) null값을 0으로 변경하여 계산하라
