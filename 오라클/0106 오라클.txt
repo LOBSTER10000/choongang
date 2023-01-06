@@ -13,7 +13,7 @@ check
 
 * desc 테이블명 -> 테이블의 정보가 나온다
 
-(1) not null
+(1) not null (null값이 없게 생성한다)
 
 create table table_notnull(
     login_id varchar2(20) not null,
@@ -30,7 +30,8 @@ values ('test_id_01', '1234');
 
 update table_notnull
   set  login_pwd = null
-  where login_id = 'test_id_01'; (업데이트 불가) -> 제약조건에 해당됨
+  where login_id = 'test_id_01'; 
+-> (업데이트 불가) -> 제약조건에 해당됨
 
 //
 select owner, constraint_name, constraint_type, table_name
@@ -41,6 +42,7 @@ create table table_notnull2 (
     login_pwd varchar2(20) constraint tblnn2_lgnpw_nn not null,
     tel varchar2(20)
     );
+-> constraint 제약조건명
 
 tblnn2_lgnid_nn
 테이블명 -> 열의 이름 -> not null이라는 의미
